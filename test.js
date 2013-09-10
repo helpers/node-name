@@ -66,10 +66,10 @@ console.log(chalk.magenta('path.extname:\n') + arr.map(function (item) {
 }).join('\n') + '\n');
 
 
+
 /**
  * name utils
  */
-
 
 // name.dir
 console.log(chalk.magenta('name.dir:\n') + arr.map(function (item) {
@@ -93,19 +93,18 @@ console.log(chalk.magenta('name.base:\n') + arr.map(function (item) {
 
 // name.basename
 console.log(chalk.magenta('name.basename:\n') + arr.map(function (item) {
-  return chalk.grey("name.basename: ") + item + chalk.green(" => ") + name.basename(item);
+  return chalk.grey('name.basename: ') + item + chalk.green(" => ") + name.basename(item);
 }).join('\n') + '\n');
 
 
 
 // TODO: just a reminder to create a function dry this up.
-
 // function example(name) {
 //   for (var o in name) {
 //     if (name.hasOwnProperty(o)) {
 //       something(o, name[o]);
 //     }
 //   }
-// };
+// }
 
 // console.log(module);

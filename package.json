@@ -1,7 +1,7 @@
 {
   "name": "node-name",
   "description": "Basic utility methods for transforming and handling file paths.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
