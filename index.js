@@ -13,7 +13,6 @@ var path = require('path');
 var name = module.exports = exports = {}
 
 
-
 /**
  * Directory path, excluding the filename
  * @param  {[type]} path [description]
@@ -48,7 +47,7 @@ name.filename = function(filepath) {
 
 
 /**
- * Basename of the file.
+ * Name of the file.
  * @param  {[type]} base [description]
  * @param  {[type]} ext  [description]
  * @return {[type]}      [description]
@@ -58,8 +57,10 @@ name.base = function(filepath) {
 };
 
 
+
 /**
- * Similar to basename, but less greedy.
+ * Returns the basename of a file, with dots and
+ * underscores transformed to dashes.
  * @param  {[type]} filepath [description]
  * @return {[type]}          [description]
  */
