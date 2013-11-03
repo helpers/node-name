@@ -7,104 +7,65 @@
 
 
 var chalk = require('chalk');
+var colors = require('colors');
 var path = require('path');
 var _ = require('lodash');
 
 // This module.
-var name = require('./');
+var name = require('./index');
+
 
 var arr = [
-  'foo.bar.baz.quux',
-  'foo.bar.baz.quux',
-  '/foo.bar.baz.quux',
-  'foo/bar.baz.quux',
-  'foo/bar.baz.quux/',
-  'foo/bar/baz.quux',
-  'foo/bar/baz.quux.',
-  'foo.bar/baz.quux',
-  '.foo.bar/baz.quux.',
   '.foo.bar/baz.quux',
-  'foo/bar.baz/quux',
-  'foo/bar/baz/quux',
+  '.foo.bar/baz.quux.',
+  '.html',
+  '/foo.bar.baz.quux',
+  '/foo/bar/baz/asdf/quux',
+  '/foo/bar/baz/asdf/quux.html',
   '/foo/bar/baz/quux',
   '/quux',
   '/quux/',
-  'quux/',
-  'foo/bar/baz/quux/',
+  'foo.bar.baz.quux',
+  'foo.bar/baz.quux',
   'foo/bar.baz.quux',
-  '/foo/bar/baz/asdf/quux',
-  '/foo/bar/baz/asdf/quux.html',
-  '.html'
+  'foo/bar.baz.quux/',
+  'foo/bar.baz/quux',
+  'foo/bar/baz.quux',
+  'foo/bar/baz.quux.',
+  'foo/bar/baz/quux',
+  'foo/bar/baz/quux/',
+  'quux/',
 ];
 
 
+function logger(fn, name) {
+  name = name || 'name';
+  console.log(name.bold + ':\n' + arr.map(function (item) {
+    return ('>> ' + name + ': ').yellow + item +  ' =>\t'.green  + fn(item);
+  }).join('\n') + '\n');
+}
 
-/**
- * Node.js examples, for comparison
- */
-
-
-// name.ext
-console.log(chalk.magenta('name.ext:\n') + arr.map(function (item) {
-  return chalk.grey("name.ext: ") + item + chalk.green(" => ") + name.ext(item);
-}).join('\n') + '\n');
-
-
-// path.dirname
-console.log(chalk.magenta('path.dirname:\n') + arr.map(function (item) {
-  return chalk.grey("path.dirname: ") + item + chalk.green(" => ") + path.dirname(item);
-}).join('\n') + '\n');
-
-// Basename
-console.log(chalk.magenta('path.basename:\n') + arr.map(function (item) {
-  return chalk.grey("path.basename: ") + item + chalk.green(" => ") + path.basename(item);
-}).join('\n') + '\n');
-
-// Extname
-console.log(chalk.magenta('path.extname:\n') + arr.map(function (item) {
-  return chalk.grey("path.extname: ") + item + chalk.green(" => ") + path.extname(item);
-}).join('\n') + '\n');
+function loggerObj(fn, name) {
+  name = name || 'name';
+  console.log(name.bold + ':\n' + arr.map(function (item) {
+    return ('>> ' + name + ': ').yellow + item +  ' =>\t\n'.green  + JSON.stringify(fn(item), null, 2);
+  }).join('\n') + '\n');
+}
 
 
+logger(path.basename, 'basename');
+logger(path.dirname,  'dirname');
+logger(path.extname,  'extname');
 
-/**
- * name utils
- */
+logger(name.base,     'base');
+logger(name.basename, 'basename');
+logger(name.dir,      'dir');
+logger(name.ext,      'ext');
+logger(name.first,    'first');
 
-// name.dir
-console.log(chalk.magenta('name.dir:\n') + arr.map(function (item) {
-  return chalk.grey("name.dir: ") + item + chalk.green(" => ") + name.dir(item);
-}).join('\n') + '\n');
-
-// name.file
-console.log(chalk.magenta('name.file:\n') + arr.map(function (item) {
-  return chalk.grey("name.file: ") + item + chalk.green(" => ") + name.file(item);
-}).join('\n') + '\n');
-
-// name.filename
-console.log(chalk.magenta('name.filename:\n') + arr.map(function (item) {
-  return chalk.grey("name.filename: ") + item + chalk.green(" => ") + name.filename(item);
-}).join('\n') + '\n');
-
-// name.base
-console.log(chalk.magenta('name.base:\n') + arr.map(function (item) {
-  return chalk.grey("name.base: ") + item + chalk.green(" => ") + name.base(item);
-}).join('\n') + '\n');
-
-// name.basename
-console.log(chalk.magenta('name.basename:\n') + arr.map(function (item) {
-  return chalk.grey('name.basename: ') + item + chalk.green(" => ") + name.basename(item);
-}).join('\n') + '\n');
+logger(name.file,     'file');
+logger(name.filename, 'filename');
+logger(name.fullname, 'fullname');
 
 
-
-// TODO: just a reminder to create a function dry this up.
-// function example(name) {
-//   for (var o in name) {
-//     if (name.hasOwnProperty(o)) {
-//       something(o, name[o]);
-//     }
-//   }
-// }
-
-// console.log(module);
+loggerObj(name.splitPath, 'splitPath');
