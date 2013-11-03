@@ -5,10 +5,11 @@
  * Licensed under the MIT license.
  */
 
-
-var chalk = require('chalk');
-var colors = require('colors');
+// Node.js
 var path = require('path');
+
+// node_modules
+var chalk = require('chalk');
 var _ = require('lodash');
 
 // This module.
